@@ -10,6 +10,9 @@ public final class TaskEntity: NSManagedObject {
     @NSManaged public var syncStatusRaw: String
     @NSManaged public var isCompleted: Bool
     @NSManaged public var lastModified: Date
+    /// Sync bookkeeping only — never exposed through TaskRepository or TodoItem.
+    @NSManaged public var lastSyncedAt: Date?
+    @NSManaged public var remoteID: NSNumber?
     @NSManaged public var tags: NSArray?
     @NSManaged public var project: ProjectEntity?
     @NSManaged public var subtasks: NSOrderedSet?

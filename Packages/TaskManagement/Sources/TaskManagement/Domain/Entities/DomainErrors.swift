@@ -10,3 +10,7 @@ public enum ProjectValidationError: Error, Equatable {
 public enum TaskUseCaseError: Error, Equatable {
     case taskNotFound
 }
+
+public enum ProjectUseCaseError: Error, Equatable {
+    case projectNotFound
+}
