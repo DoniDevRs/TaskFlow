@@ -8,7 +8,11 @@ let package = Package(
         .library(name: "Core", targets: ["Core"])
     ],
     targets: [
-        .target(name: "Core", path: "Sources/Core"),
+        .target(
+            name: "Core",
+            path: "Sources/Core",
+            resources: [.process("Persistence/TaskFlow.xcdatamodeld")]
+        ),
         .testTarget(name: "CoreTests", dependencies: ["Core"], path: "Tests/CoreTests")
     ]
 )
