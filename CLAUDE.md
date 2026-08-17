@@ -26,12 +26,25 @@ on macOS before being trusted. If you are Claude Code running on macOS
 with Xcode available, prefer that — actually build and run the test plans
 rather than relying on prior "code review only" verification.
 
+## Naming: TodoItem, not Task
+
+The domain entity plan.md calls `Task` is implemented as `TodoItem`
+(`TaskManagement/Domain/Entities/TodoItem.swift`). Reason: `Task` collides
+with Swift Concurrency's built-in `_Concurrency.Task`, which this codebase
+uses throughout for async/await — an unqualified `Task` reference would be
+ambiguous almost everywhere. Only the bare struct name changed;
+repositories, use cases, ViewModels, and views keep "Task" as domain
+vocabulary (`TaskRepository`, `CreateTaskUseCase`, `TaskListViewModel`,
+`TaskListView`, ...) since those are compound identifiers that don't
+collide. Don't rename `TodoItem` back to `Task` — this was a deliberate,
+user-confirmed fix, not an oversight.
+
 ## Architecture
 
 **Clean Architecture + MVVM-C**, three layers per feature module:
 
-- **Domain**: entities (`Task`, `Project`, `Subtask`, `Priority`,
-  `SyncStatus`), use cases (one type per use case, e.g.
+- **Domain**: entities (`TodoItem` — see naming note above, `Project`,
+  `Subtask`, `Priority`, `SyncStatus`), use cases (one type per use case, e.g.
   `CreateTaskUseCase`), repository protocols (`TaskRepository`,
   `ProjectRepository`). No Core Data, no networking, no SwiftUI types leak
   in here — pure Swift + Foundation.
