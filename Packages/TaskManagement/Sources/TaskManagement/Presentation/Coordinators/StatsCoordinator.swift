@@ -19,7 +19,7 @@ public final class StatsCoordinator: Coordinator {
         let viewModel = StatsViewModel(fetchStatsUseCase: container.resolve(FetchStatsUseCase.self))
         let view = StatsView(viewModel: viewModel)
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = "Stats"
+        hostingController.title = String(localized: "Stats", bundle: .module)
         navigationController.setViewControllers([hostingController], animated: false)
     }
 }

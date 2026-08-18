@@ -77,7 +77,7 @@ public struct AddEditTaskView: View {
             SectionLabel(title: "Priority")
             Picker("Priority", selection: $viewModel.priority) {
                 ForEach(Priority.allCases, id: \.self) { priority in
-                    Text(priority.rawValue.capitalized).tag(priority)
+                    Text(priority.displayName).tag(priority)
                 }
             }
             .pickerStyle(.segmented)

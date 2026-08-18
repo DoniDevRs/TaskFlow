@@ -141,7 +141,7 @@ public struct TaskDetailView: View {
         }
     }
 
-    private var syncStatusDescription: String {
+    private var syncStatusDescription: LocalizedStringKey {
         switch viewModel.task.syncStatus {
         case .synced: "Synced"
         case .pending: "Waiting to sync"

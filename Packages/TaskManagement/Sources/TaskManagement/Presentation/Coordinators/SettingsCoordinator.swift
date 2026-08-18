@@ -22,7 +22,7 @@ public final class SettingsCoordinator: Coordinator {
             onSyncNow: { [weak self] in self?.triggerSync() }
         )
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = "Settings"
+        hostingController.title = String(localized: "Settings", bundle: .module)
         navigationController.setViewControllers([hostingController], animated: false)
     }
 

@@ -28,7 +28,7 @@ public final class ProjectListCoordinator: Coordinator {
             onSelectProject: { [weak self] project in self?.showProjectTasks(project) }
         )
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = "Projects"
+        hostingController.title = String(localized: "Projects", bundle: .module)
         navigationController.setViewControllers([hostingController], animated: false)
     }
 

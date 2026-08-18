@@ -6,8 +6,10 @@ public enum TaskValidationError: Error, Equatable, LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .emptyTitle: "Title can't be empty."
-        case .dueDateInPast: "Due date can't be in the past."
+        case .emptyTitle:
+            String(localized: "Title can't be empty.", bundle: .module)
+        case .dueDateInPast:
+            String(localized: "Due date can't be in the past.", bundle: .module)
         }
     }
 }
@@ -17,7 +19,8 @@ public enum ProjectValidationError: Error, Equatable, LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .emptyName: "Project name can't be empty."
+        case .emptyName:
+            String(localized: "Project name can't be empty.", bundle: .module)
         }
     }
 }
@@ -27,7 +30,8 @@ public enum TaskUseCaseError: Error, Equatable, LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .taskNotFound: "That task couldn't be found."
+        case .taskNotFound:
+            String(localized: "That task couldn't be found.", bundle: .module)
         }
     }
 }
@@ -37,7 +41,8 @@ public enum ProjectUseCaseError: Error, Equatable, LocalizedError {
 
     public var errorDescription: String? {
         switch self {
-        case .projectNotFound: "That project couldn't be found."
+        case .projectNotFound:
+            String(localized: "That project couldn't be found.", bundle: .module)
         }
     }
 }

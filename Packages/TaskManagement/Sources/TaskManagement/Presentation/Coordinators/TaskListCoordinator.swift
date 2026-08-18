@@ -24,7 +24,7 @@ public final class TaskListCoordinator: Coordinator {
             onAddTask: { [weak self] in self?.showAddTask() }
         )
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = "Tasks"
+        hostingController.title = String(localized: "Tasks", bundle: .module)
         navigationController.setViewControllers([hostingController], animated: false)
     }
 
@@ -39,7 +39,7 @@ public final class TaskListCoordinator: Coordinator {
             onEdit: { [weak self] task in self?.showEditTask(task) }
         )
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = "Task"
+        hostingController.title = String(localized: "Task", bundle: .module)
         navigationController.pushViewController(hostingController, animated: true)
     }
 
@@ -73,7 +73,9 @@ public final class TaskListCoordinator: Coordinator {
             onCancel: dismiss
         )
         let hostingController = UIHostingController(rootView: view)
-        hostingController.title = viewModel.isEditing ? "Edit Task" : "New Task"
+        hostingController.title = viewModel.isEditing
+            ? String(localized: "Edit Task", bundle: .module)
+            : String(localized: "New Task", bundle: .module)
         let modalNavigationController = UINavigationController(rootViewController: hostingController)
         navigationController.present(modalNavigationController, animated: true)
     }

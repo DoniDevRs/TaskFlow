@@ -6,9 +6,18 @@ import SwiftUI
 /// UIKit push, per plan.md §5 (wired up in T9).
 public struct TaskListView: View {
     private enum Layout: String, CaseIterable, Identifiable {
-        case list = "List"
-        case board = "Board"
+        case list
+        case board
         var id: String { rawValue }
+
+        /// LocalizedStringKey, not String — Text(option.rawValue) would
+        /// resolve to Text's verbatim (non-localizing) initializer.
+        var displayName: LocalizedStringKey {
+            switch self {
+            case .list: "List"
+            case .board: "Board"
+            }
+        }
     }
 
     @StateObject private var viewModel: TaskListViewModel
@@ -34,7 +43,7 @@ public struct TaskListView: View {
             VStack(spacing: TFSpacing.md) {
                 Picker("Layout", selection: $layout) {
                     ForEach(Layout.allCases) { option in
-                        Text(option.rawValue).tag(option)
+                        Text(option.displayName).tag(option)
                     }
                 }
                 .pickerStyle(.segmented)
@@ -88,7 +97,7 @@ public struct TaskListView: View {
     private func boardColumn(for priority: Priority) -> some View {
         let columnTasks = viewModel.tasks.filter { $0.priority == priority }
         return VStack(alignment: .leading, spacing: TFSpacing.sm) {
-            SectionLabel(title: "\(priority.rawValue) priority")
+            SectionLabel(title: priority.boardColumnTitle)
             ForEach(columnTasks) { task in
                 TaskRowView(task: task) {
                     Task { await viewModel.toggleCompletion(id: task.id) }

@@ -55,7 +55,7 @@ public final class SettingsViewModel: ObservableObject {
 
     public func setPasscode(_ passcode: String) {
         guard (4...6).contains(passcode.count), passcode.allSatisfy(\.isNumber) else {
-            errorMessage = "Passcode must be 4 to 6 digits."
+            errorMessage = String(localized: "Passcode must be 4 to 6 digits.", bundle: .module)
             return
         }
         do {

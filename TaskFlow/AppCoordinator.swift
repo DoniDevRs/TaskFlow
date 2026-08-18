@@ -21,7 +21,7 @@ final class AppCoordinator {
         let taskListCoordinator = TaskListCoordinator(navigationController: taskListNav, container: container)
         taskListCoordinator.start()
         taskListNav.tabBarItem = UITabBarItem(
-            title: "Tasks",
+            title: String(localized: "Tasks", bundle: TaskManagementResources.bundle),
             image: UIImage(systemName: "checklist"),
             tag: 0
         )
@@ -30,7 +30,7 @@ final class AppCoordinator {
         let projectListCoordinator = ProjectListCoordinator(navigationController: projectListNav, container: container)
         projectListCoordinator.start()
         projectListNav.tabBarItem = UITabBarItem(
-            title: "Projects",
+            title: String(localized: "Projects", bundle: TaskManagementResources.bundle),
             image: UIImage(systemName: "folder"),
             tag: 1
         )
@@ -39,7 +39,7 @@ final class AppCoordinator {
         let statsCoordinator = StatsCoordinator(navigationController: statsNav, container: container)
         statsCoordinator.start()
         statsNav.tabBarItem = UITabBarItem(
-            title: "Stats",
+            title: String(localized: "Stats", bundle: TaskManagementResources.bundle),
             image: UIImage(systemName: "chart.bar.fill"),
             tag: 2
         )
@@ -48,7 +48,7 @@ final class AppCoordinator {
         let settingsCoordinator = SettingsCoordinator(navigationController: settingsNav, container: container)
         settingsCoordinator.start()
         settingsNav.tabBarItem = UITabBarItem(
-            title: "Settings",
+            title: String(localized: "Settings", bundle: TaskManagementResources.bundle),
             image: UIImage(systemName: "gearshape"),
             tag: 3
         )
