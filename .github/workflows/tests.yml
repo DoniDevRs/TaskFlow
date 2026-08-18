@@ -1,0 +1,51 @@
+name: Tests
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      - name: Resolve a simulator destination
+        run: |
+          DEVICE_NAME=$(xcrun simctl list devices available -j | jq -r '
+            [.devices[][] | select(.name | startswith("iPhone")) | select(.isAvailable)][0].name // empty
+          ')
+          if [ -z "$DEVICE_NAME" ]; then
+            echo "No available iPhone simulator found on this runner" >&2
+            xcrun simctl list devices available
+            exit 1
+          fi
+          echo "Using simulator: $DEVICE_NAME"
+          echo "SIMULATOR_DESTINATION=platform=iOS Simulator,name=$DEVICE_NAME" >> "$GITHUB_ENV"
+
+      - name: Build for testing
+        run: >
+          xcodebuild build-for-testing
+          -project TaskFlow.xcodeproj
+          -scheme TaskFlow
+          -destination "$SIMULATOR_DESTINATION"
+
+      - name: Run unit tests (CoreTests, TaskManagementTests)
+        run: >
+          xcodebuild test-without-building
+          -project TaskFlow.xcodeproj
+          -scheme TaskFlow
+          -destination "$SIMULATOR_DESTINATION"
+          -only-testing:CoreTests
+          -only-testing:TaskManagementTests
+
+      - name: Run UI tests (TaskFlowUITests)
+        run: >
+          xcodebuild test-without-building
+          -project TaskFlow.xcodeproj
+          -scheme TaskFlow
+          -destination "$SIMULATOR_DESTINATION"
+          -only-testing:TaskFlowUITests
