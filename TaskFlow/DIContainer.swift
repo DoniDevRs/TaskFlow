@@ -8,8 +8,12 @@ enum DIContainer {
     static func makeContainer() -> Container {
         let container = Container()
 
+        // UI tests launch with this flag so each run starts from an empty,
+        // in-memory store instead of accumulating state in the real one.
+        let isUITesting = ProcessInfo.processInfo.arguments.contains("-UITest_ResetState")
+
         container.register(PersistenceControlling.self, scope: .singleton) {
-            PersistenceController.shared
+            isUITesting ? PersistenceController(inMemory: true) : PersistenceController.shared
         }
 
         container.register(APIClient.self, scope: .singleton) {

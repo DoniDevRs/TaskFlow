@@ -20,6 +20,20 @@
                ReferencedContainer = "container:TaskFlow.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5777CCFB882B2136D13B9E7"
+               BuildableName = "TaskFlowUITests.xctest"
+               BlueprintName = "TaskFlowUITests"
+               ReferencedContainer = "container:TaskFlow.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -46,6 +60,16 @@
                BuildableName = "TaskManagementTests"
                BlueprintName = "TaskManagementTests"
                ReferencedContainer = "container:Packages/TaskManagement">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5777CCFB882B2136D13B9E7"
+               BuildableName = "TaskFlowUITests.xctest"
+               BlueprintName = "TaskFlowUITests"
+               ReferencedContainer = "container:TaskFlow.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

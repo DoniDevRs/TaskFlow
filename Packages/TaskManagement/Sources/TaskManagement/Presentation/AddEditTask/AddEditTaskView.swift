@@ -52,6 +52,7 @@ public struct AddEditTaskView: View {
                     }
                 }
                 .disabled(viewModel.isSaving)
+                .accessibilityIdentifier("addEditTask.save")
             }
         }
     }
@@ -59,6 +60,7 @@ public struct AddEditTaskView: View {
     private var titleField: some View {
         TextField("Title", text: $viewModel.title)
             .font(TFTypography.taskTitle())
+            .accessibilityIdentifier("addEditTask.titleField")
     }
 
     private var descriptionField: some View {
@@ -120,17 +122,20 @@ public struct AddEditTaskView: View {
                             .foregroundStyle(TFColor.ink.opacity(0.4))
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Remove \(subtask.title)")
                 }
             }
 
             HStack {
                 TextField("Add subtask", text: $newSubtaskTitle)
                     .font(TFTypography.body())
+                    .accessibilityIdentifier("addEditTask.subtaskField")
                 Button("Add") {
                     viewModel.addSubtask(title: newSubtaskTitle)
                     newSubtaskTitle = ""
                 }
                 .disabled(newSubtaskTitle.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                .accessibilityIdentifier("addEditTask.addSubtask")
             }
         }
     }

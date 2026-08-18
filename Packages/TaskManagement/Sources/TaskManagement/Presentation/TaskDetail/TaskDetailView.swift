@@ -82,6 +82,8 @@ public struct TaskDetailView: View {
                     .foregroundStyle(viewModel.task.isCompleted ? TFColor.sage : TFColor.ink.opacity(0.4))
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(viewModel.task.isCompleted ? "Mark incomplete" : "Mark complete")
+            .accessibilityIdentifier("taskDetail.toggleCompletion")
         }
     }
 

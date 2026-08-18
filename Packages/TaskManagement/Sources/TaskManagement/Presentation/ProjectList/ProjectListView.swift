@@ -48,6 +48,7 @@ public struct ProjectListView: View {
         NavigationStack {
             Form {
                 TextField("Project name", text: $newProjectName)
+                    .accessibilityIdentifier("addProject.nameField")
             }
             .navigationTitle("New Project")
             .toolbar {
@@ -66,6 +67,7 @@ public struct ProjectListView: View {
                         }
                     }
                     .disabled(newProjectName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .accessibilityIdentifier("addProject.save")
                 }
             }
         }

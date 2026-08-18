@@ -41,6 +41,7 @@ public struct StatsView: View {
                 Text("\(Int((stats.completionRate * 100).rounded()))%")
                     .font(TFTypography.screenTitle())
                     .foregroundStyle(TFColor.ink)
+                    .accessibilityIdentifier("stats.completionRateLabel")
             }
             .frame(width: 140, height: 140)
         }

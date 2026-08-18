@@ -18,6 +18,8 @@ struct TaskRowView: View {
                     .foregroundStyle(task.isCompleted ? TFColor.sage : TFColor.ink.opacity(0.4))
             }
             .buttonStyle(.plain)
+            .accessibilityLabel(task.isCompleted ? "Mark incomplete" : "Mark complete")
+            .accessibilityIdentifier("taskRow.toggleCompletion.\(task.id)")
 
             VStack(alignment: .leading, spacing: TFSpacing.xs) {
                 Text(task.title)

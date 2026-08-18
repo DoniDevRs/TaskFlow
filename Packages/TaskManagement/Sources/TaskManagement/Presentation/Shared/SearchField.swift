@@ -10,6 +10,7 @@ struct SearchField: View {
                 .foregroundStyle(TFColor.ink.opacity(0.5))
             TextField("Search tasks", text: $query)
                 .font(TFTypography.body())
+                .accessibilityIdentifier("taskList.searchField")
             if !query.isEmpty {
                 Button {
                     query = ""
@@ -18,6 +19,7 @@ struct SearchField: View {
                         .foregroundStyle(TFColor.ink.opacity(0.4))
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Clear search")
             }
         }
         .padding(.horizontal, TFSpacing.md)
