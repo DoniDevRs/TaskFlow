@@ -64,8 +64,8 @@ public final class TaskListCoordinator: Coordinator {
     }
 
     private func presentAddEditTask(viewModel: AddEditTaskViewModel) {
-        let dismiss = { [weak navigationController] in
-            navigationController?.presentedViewController?.dismiss(animated: true)
+        let dismiss: () -> Void = { [weak navigationController] in
+            _ = navigationController?.presentedViewController?.dismiss(animated: true)
         }
         let view = AddEditTaskView(
             viewModel: viewModel,
